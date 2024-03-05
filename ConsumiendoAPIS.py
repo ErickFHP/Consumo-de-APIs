@@ -48,3 +48,25 @@ if response.status_code == 200:
     print(json.dumps(data, indent=4))
 else:
     print(f"Error: {response.status_code} - {response.reason}")
+
+#Consumiendo otras APIs
+# API de Star Wars
+response = requests.get('https://swapi.dev/api/people/1/')
+if response.status_code == 200:
+    data = response.json()
+    print(f"Personaje de Star Wars: {data['name']}")
+
+# API de JokeAPI
+response = requests.get('https://v2.jokeapi.dev/joke/Any')
+if response.status_code == 200:
+    data = response.json()
+    if data['type'] == 'single':
+        print(f"Chiste: {data['joke']}")
+    else:
+        print(f"Chiste: {data['setup']} {data['delivery']}")
+
+# API de Cat Facts
+response = requests.get('https://catfact.ninja/fact')
+if response.status_code == 200:
+    data = response.json()
+    print(f"Hecho sobre gatos: {data['fact']}")
